@@ -27,7 +27,31 @@ export async function login(email, password) {
 }
 
 //get todos
+export async function getTodos(token) {
+    const data = await request
+        .get(`${URL}/api/todos`)
+        .set('Authorization', token)
+
+    return data.body;
+}
 
 //add todo
+export async function createTodo(todo, token) {
+    const data = await request
+        .post(`${URL}/api/todos`)
+        .send({
+            todo: todo
+        })
+        .set('Authorization', token)
+
+    return data.body;
+}
 
 //complete todo
+export async function completeTodo(id, token) {
+    const data = await request
+        .put(`${URL}/api/todos/${id}`)
+        .set('Authorization', token)
+
+        return data.body;
+}

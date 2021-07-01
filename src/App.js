@@ -3,6 +3,7 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
+  Redirect
 } from "react-router-dom";
 import Header from './Header.js';
 import HomePage from './Home.js';
@@ -37,6 +38,7 @@ export default class App extends Component {
 
   render() {
 
+    console.log(this.state);
     return (
       <Router>
         <div>
@@ -60,7 +62,11 @@ export default class App extends Component {
             <Route 
               path="/todos" 
               exact
-              render={(routerProps) => <TodosPage login={this.login} {...routerProps} />} 
+              render={(routerProps) => 
+                this.state.token 
+                ? <TodosPage token={this.state.token} {...routerProps} />
+                : <Redirect to ='/' />
+              } 
             />
           </Switch>
         </div>

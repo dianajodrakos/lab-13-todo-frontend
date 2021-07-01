@@ -47,7 +47,7 @@ export default class Todos extends Component {
                 {this.state.todos.map(
                     item => {
                     return <li 
-
+                    className={item.completed ? 'complete' : 'incomplete' } 
                     key={item.id} 
                     onClick={
                         async () => {

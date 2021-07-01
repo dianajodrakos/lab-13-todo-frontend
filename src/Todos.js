@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { getTodos, createTodo, completeTodo } from './fetch-utils.js';
+import { getTodos, createTodo } from './fetch-utils.js';
 
 export default class Todos extends Component {
 

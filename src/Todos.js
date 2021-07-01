@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { getTodos, createTodo } from './fetch-utils.js';
+import { getTodos, createTodo, completeTodo } from './fetch-utils.js';
 
 export default class Todos extends Component {
 
@@ -43,10 +43,22 @@ export default class Todos extends Component {
                     </label>
                     <button>Submit</button>
                 </form>
-                {/* //new todo input
-                //submit button
 
-                //list of rendered todos */}
+                {this.state.todos.map(
+                    item => {
+                    return <li 
+                    className={item.completed ? 'complete' : 'incomplete' } 
+                    key={item.id} 
+                    onClick={
+                        async () => {
+                        await completeTodo(item.id, this.props.token)
+                        await this.newFetch()
+                    }}>
+                        {item.todo}
+                    </li>
+                })
+                }
+                
             </div>
         )
     }
